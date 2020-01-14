@@ -113,8 +113,7 @@ axios.interceptors.response.use(
 
     config && destroyUrlFromQueue(config.url)
 
-    throw err
-    // return Promise.reject(err)
+    return Promise.reject(err)
   },
 )
 
