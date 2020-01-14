@@ -19,6 +19,7 @@ class AdminPermissionController extends Controller
 
     public function index(Request $request, AdminPermissionFilter $filter)
     {
+        abort(500);
         $perms = AdminPermission::query()
             ->filter($filter)
             ->orderByDesc('id');
