@@ -424,3 +424,18 @@ export function arrayWrap(val) {
     return [val]
   }
 }
+
+/**
+ * 解析 json，出错时，返回默认值
+ *
+ * @param {string} str
+ * @param {any} defaultValue
+ * @return {any}
+ */
+export function jsonParse(str, defaultValue = undefined) {
+  try {
+    return JSON.parse(str)
+  } catch (e) {
+    return defaultValue
+  }
+}

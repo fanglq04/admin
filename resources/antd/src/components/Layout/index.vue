@@ -25,7 +25,9 @@
       <breadcrumb class="mx-2 my-1"/>
       <a-layout-content class="mb-3 mx-2">
         <div class="pa-2" style="background: #fff">
-          <router-view/>
+          <transition name="fade-transform" mode="out-in">
+            <router-view/>
+          </transition>
         </div>
       </a-layout-content>
       <a-layout-footer style="text-align: center;">Footer</a-layout-footer>
@@ -126,5 +128,21 @@ export default {
   width: 52px;
   height: 64px;
   min-height: 64px;
+}
+
+/* fade-transform */
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+  transition: all .3s;
+}
+
+.fade-transform-enter {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.fade-transform-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
 }
 </style>
