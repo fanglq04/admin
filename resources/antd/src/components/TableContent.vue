@@ -5,9 +5,11 @@
         <slot name="actions"/>
       </template>
     </content-header>
-    <div class="content-main">
-      <slot/>
+    <slot/>
+    <div style="overflow-x: auto">
+      <slot name="table"/>
     </div>
+    <slot name="after"/>
   </div>
 </template>
 
@@ -15,7 +17,7 @@
 import ContentHeader from '@c/ContentHeader'
 
 export default {
-  name: 'FormContent',
+  name: 'TableContent',
   components: {
     ContentHeader,
   },
@@ -26,8 +28,5 @@ export default {
 </script>
 
 <style scoped lang="less">
-.content-main {
-  display: flex;
-  justify-content: center;
-}
+
 </style>
