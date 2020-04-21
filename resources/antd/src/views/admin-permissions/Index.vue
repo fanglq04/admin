@@ -1,5 +1,6 @@
 <template>
   <div>
+    <content-header/>
     <!--<template #header>
       <content-header/>
     </template>
@@ -25,7 +26,7 @@
       </a-table-column>
       <a-table-column title="添加时间" data-index="created_at" :width="180"/>
       <a-table-column title="修改时间" data-index="updated_at" :width="180"/>
-      <a-table-column title="操作" :width="150" class="table-actions">
+      <a-table-column title="操作" :width="100" class="table-actions">
         <template #default="record">
           <space>
             <router-link :to="`/admin-permissions/${record.id}/edit`">编辑</router-link>
@@ -49,6 +50,8 @@
 import { getAdminPerms } from '@/api/admin-perms'
 import RouteShow from './components/RouteShow'
 import Space from '@c/Space'
+import FormContent from '@c/FormContent'
+import ContentHeader from '@c/ContentHeader'
 // import Pagination from '@c/Pagination'
 // import SearchForm from '@c/SearchForm'
 // import RowDestroy from '@c/LzTable/RowDestroy'
@@ -57,12 +60,14 @@ import Space from '@c/Space'
 export default {
   name: 'Index',
   components: {
+    ContentHeader,
     Space,
     // RowToEdit,
     // RowDestroy,
     // SearchForm,
     // Pagination,
     RouteShow,
+    FormContent,
   },
   data() {
     return {
