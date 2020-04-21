@@ -33,7 +33,7 @@ import {
 } from '@/api/admin-perms'
 import LzForm from '@c/LzForm'
 import LzFormItem from '@c/LzForm/LzFormItem'
-import FormContent from '@c/Layout/FormContent'
+import FormContent from '@c/FormContent'
 
 export default {
   name: 'Form',
@@ -56,15 +56,15 @@ export default {
   },
   methods: {
     async getData() {
-      if (this.$form.realEditMode) {
-        const { data } = await editAdminPerm(this.$form.resourceId)
+      if (this.$refs.form.realEditMode) {
+        const { data } = await editAdminPerm(this.$refs.form.resourceId)
         data.http_path = data.http_path.join('\n')
         return data
       }
     },
     async onSubmit() {
-      if (this.$form.realEditMode) {
-        await updateAdminPerm(this.$form.resourceId, this.form)
+      if (this.$refs.form.realEditMode) {
+        await updateAdminPerm(this.$refs.form.resourceId, this.form)
       } else {
         await storeAdminPerm(this.form)
       }

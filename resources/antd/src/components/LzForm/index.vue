@@ -25,17 +25,6 @@ export default {
       formBak: JSON.stringify(this.form),
     }
   },
-  computed: {
-    tinyWidth() {
-      return this.$store.state.tinyWidth
-    },
-    realEditMode() {
-      return this.editMode === undefined ? !!this.resourceId : this.editMode
-    },
-    resourceId() {
-      return this.$route.params[this.idField]
-    },
-  },
   props: {
     getData: Function,
     submit: Function,
@@ -67,10 +56,28 @@ export default {
     },
     disableRedirect: Boolean,
     disableStay: Boolean,
-    editMode: Boolean,
+    editMode: {
+      type: Boolean,
+      default: undefined,
+    },
+    /**
+     * 路由配置中的动态 id 参数
+     * 用来自动设置是不是编辑模式
+     */
     idField: {
       type: [Number, String],
       default: 'id',
+    },
+  },
+  computed: {
+    tinyWidth() {
+      return this.$store.state.tinyWidth
+    },
+    realEditMode() {
+      return this.editMode === undefined ? !!this.resourceId : this.editMode
+    },
+    resourceId() {
+      return this.$route.params[this.idField]
     },
   },
   methods: {
@@ -123,7 +130,9 @@ export default {
   watch: {
     $route: {
       handler() {
-        this.$active && this._getData()
+        this.$nextTick(() => {
+          this.$active && this._getData()
+        })
       },
       immediate: true,
     },

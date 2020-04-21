@@ -36,7 +36,7 @@
 import { editUser, updateUser } from '@/api/admin-users'
 import LzForm from '@c/LzForm'
 import LzFormItem from '@c/LzForm/LzFormItem'
-import FormContent from '@c/Layout/FormContent'
+import FormContent from '@c/FormContent'
 
 export default {
   components: {

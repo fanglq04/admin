@@ -17,3 +17,10 @@ export default {
   },
 }
 </script>
+
+<style scoped lang="less">
+.content-main {
+  display: flex;
+  justify-content: center;
+}
+</style>
