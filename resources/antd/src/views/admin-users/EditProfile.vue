@@ -1,5 +1,5 @@
 <template>
-  <form-content>
+  <page-content center>
     <lz-form
       ref="form"
       :get-data="getData"
@@ -29,18 +29,18 @@
         <a-tag v-for="i of profile.permissions" color="blue" :key="i">{{ i }}</a-tag>
       </lz-form-item>
     </lz-form>
-  </form-content>
+  </page-content>
 </template>
 
 <script>
 import { editUser, updateUser } from '@/api/admin-users'
 import LzForm from '@c/LzForm'
 import LzFormItem from '@c/LzForm/LzFormItem'
-import FormContent from '@c/FormContent'
+import PageContent from '@c/PageContent'
 
 export default {
   components: {
-    FormContent,
+    PageContent,
     LzForm,
     LzFormItem,
   },

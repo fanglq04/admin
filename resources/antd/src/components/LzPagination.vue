@@ -4,7 +4,7 @@
     v-if="page"
     v-model="currentPage"
     :page-size-options="pageSizes"
-    class="my-2"
+    class="my-1 pagination"
     :total="page.total"
     show-size-changer
     show-quick-jumper
@@ -79,13 +79,19 @@ export default {
         }
         this.currentPage = newVal.current_page
         this.perPage = newVal.per_page
-        // 处理浏览器前进后退时, 分页器的当前页不对的问题
-        // this.$nextTick(() => {
-        //   this.$refs.page.internalCurrentPage = newVal.current_page
-        // })
       },
       immediate: true,
     },
   },
 }
 </script>
+
+<style scoped lang="less">
+.pagination {
+  overflow-x: auto;
+  white-space: nowrap;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+</style>

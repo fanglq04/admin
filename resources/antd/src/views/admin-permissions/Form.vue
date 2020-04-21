@@ -1,5 +1,5 @@
 <template>
-  <form-content>
+  <page-content center>
     <lz-form
       ref="form"
       :get-data="getData"
@@ -22,7 +22,7 @@
         <a-input :auto-size="{ minRows: 5, maxRows: 5 }" type="textarea" v-model="form.http_path"/>
       </lz-form-item>
     </lz-form>
-  </form-content>
+  </page-content>
 </template>
 
 <script>
@@ -33,12 +33,12 @@ import {
 } from '@/api/admin-perms'
 import LzForm from '@c/LzForm'
 import LzFormItem from '@c/LzForm/LzFormItem'
-import FormContent from '@c/FormContent'
+import PageContent from '@c/PageContent'
 
 export default {
   name: 'Form',
   components: {
-    FormContent,
+    PageContent,
     LzForm,
     LzFormItem,
   },
