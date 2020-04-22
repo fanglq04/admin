@@ -25,12 +25,9 @@
         <template #default="record">
           <space>
             <router-link :to="`/admin-permissions/${record.id}/edit`">编辑</router-link>
-            <a-popconfirm
-              title="确认删除？"
-              @confirm="() => {}"
-            >
+            <lz-popconfirm :confirm="destroyAdminPerm(record.id)">
               <a class="red-6" href="javascript:void(0);">删除</a>
-            </a-popconfirm>
+            </lz-popconfirm>
           </space>
         </template>
       </a-table-column>
@@ -40,21 +37,22 @@
 </template>
 
 <script>
-import { getAdminPerms } from '@/api/admin-perms'
+import { getAdminPerms, destroyAdminPerm } from '@/api/admin-perms'
 import RouteShow from './components/RouteShow'
 import Space from '@c/Space'
 import LzPagination from '@c/LzPagination'
 import PageContent from '@c/PageContent'
 import SearchForm from '@c/SearchForm'
-// import RowDestroy from '@c/LzTable/RowDestroy'
+import LzPopconfirm from '@c/LzPopconfirm'
+import _dropWhile from 'lodash/dropWhile'
 
 export default {
   name: 'Index',
   components: {
+    LzPopconfirm,
     PageContent,
     LzPagination,
     Space,
-    // RowDestroy,
     SearchForm,
     RouteShow,
   },
@@ -82,6 +80,14 @@ export default {
         },
       ],
     }
+  },
+  methods: {
+    destroyAdminPerm(id) {
+      return async () => {
+        await destroyAdminPerm(id)
+        this.perms = _dropWhile(this.perms, (i) => i.id === id)
+      }
+    },
   },
   watch: {
     $route: {
