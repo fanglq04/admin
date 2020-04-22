@@ -29,7 +29,7 @@ export default {
     },
     maxWidth: {
       type: String,
-      default: '750px',
+      default: '680px',
     },
   },
   methods: {

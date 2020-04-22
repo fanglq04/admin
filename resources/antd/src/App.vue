@@ -1,6 +1,6 @@
 <template>
   <a-config-provider :locale="locale">
-    <div id="admin-app" class="h-100" v-resize="onResize">
+    <div id="admin-app" v-resize="onResize">
       <router-view/>
     </div>
   </a-config-provider>

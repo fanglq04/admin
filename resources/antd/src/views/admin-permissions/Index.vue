@@ -1,5 +1,5 @@
 <template>
-  <page-content>
+  <page-content scroll-x>
     <space class="my-1">
       <search-form :fields="search"/>
     </space>
@@ -8,7 +8,7 @@
       row-key="id"
       :data-source="perms"
       bordered
-      :scroll="{ x: 1200, y: 500 }"
+      style="min-width: 1200px;"
       :pagination="false"
     >
       <a-table-column title="ID" data-index="id" :width="60"/>
@@ -48,6 +48,11 @@ import _dropWhile from 'lodash/dropWhile'
 
 export default {
   name: 'Index',
+  /**
+   * 延迟路由的滚动行为，配合 this.$$scrollResolve()
+   * 可在数据加载完后，再滚动
+   */
+  scroll: true,
   components: {
     LzPopconfirm,
     PageContent,
@@ -95,6 +100,9 @@ export default {
         const { data: { data, meta } } = await getAdminPerms(newVal.query)
         this.perms = data
         this.page = meta
+
+        await this.$nextTick()
+        this.$scrollResolve()
       },
       immediate: true,
     },
